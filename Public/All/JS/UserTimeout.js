@@ -8,7 +8,7 @@ $(() =>
 		{
 			logouturl: "/auth/logout",                   // ULR to redirect to, to log user out
 			refreshurl: "/auth/refreshtoken", 				   // Toggle for enabling the countdown timer
-			pageTimout: 10,                   // Seconds
+			pageTimout: 900,                   // Seconds
 			modalTimeout: 30,   			   // Shows alerts
 			modalTitle: 'Session Timeout',     // Modal Title
 			modalBody: 'You\'re being timed out due to inactivity.\nPlease choose to stay signed in or to logoff.\nOtherwise, you will logged off automatically.'  // Modal Body
