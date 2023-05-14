@@ -1,0 +1,17 @@
+{
+  "DATABASE_ENGINE": "mysql",
+  "DATABASE_HOST": "node1.devcow-software.net",
+  "DATABASE_PORT": 3306,
+  "DATABASE_USERNAME": "root",
+  "DATABASE_PASSWORD": "Kelly1972!!",
+  "DATABASE_NAMES": ["Authentication", "Licencing", "Ecommerce"],
+  "DATABASE_CONNECTION_TIMEOUT": 15000,
+  "DATABASE_IDLE_TIMEOUT": 10000,
+  "DATABASE_POOL_ENABLED": true,
+  "DATABASE_POOL_MIN_SIZE": 10,
+  "DATABASE_POOL_MAX_SIZE": 100,
+  "DATABASE_USE_SSL": false,
+  "DATABASE_SSL_CERT": "cert.crt",
+  "DATABASE_SSL_KEY": "privkey.key",
+  "DATABASE_SSL_CA_CERT": "ca.crt"
+}

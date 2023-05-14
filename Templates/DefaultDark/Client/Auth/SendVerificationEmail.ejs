@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('./Layout/Meta.ejs'); %>
+    <%- include('./Layout/Links.ejs'); %>
+    <link rel="stylesheet" href="/CSS/Auth.css"/>
+
+    <title>Test</title>
+</head>
+<body>
+<% if (typeof Error == 'string' && Error) { %>
+<div class="alert alert-danger alert-dismissible fade show ErrorAlert" role="alert">
+    <strong><%= Error %></strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-12 col-md-5 col-lg-6 col-xl-4 px-lg-6 login-container">
+            <div class="login-body border-0 bg-transparent h-100">
+                <form action="/Auth/SendVerificationEmail" method="post">
+                    <p class="text-center mb-3 login-title">
+                        Sign in
+                    </p>
+                    <p class="text-muted text-center mb-5 login-subtitle">
+                        Restricted Area<br> Please Login To Continue.
+                    </p>
+                    <div class="d-grid gap-4">
+                        <div class="form-floating">
+                            <input class="form-control" name="EmailAddress" id="EmailAddress" type="email" placeholder="Email Address" required="">
+                            <label for="EmailAddress">Email Address</label>
+                        </div>
+                        <div class="input-group">
+                            <div class="form-floating">
+                                <input class="form-control" name="Password" id="Password" type="password" placeholder="Password" required="">
+                                <label for="Password">Password</label>
+                            </div>
+                            <button type="button" class="btn btn-light" onclick="TogglePasswordVisibility();"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" name="captchaResponse" id="captchaResponse"
+                                   type="hidden" placeholder="captchaResponse" required/>
+                        </div>
+                        <div class="mt-5 d-grid gap-2">
+                            <button type="submit" class="btn btn-primary text-center">Login</button>
+                            <p class="text-center">
+                                <small class="text-muted text-center">
+                                    Don't have an account yet? <a href="/Auth/Register">Sign up</a>.
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block p-0">
+            <div class="h-100 login-bg-image"></div>
+        </div>
+    </div>
+</div>
+
+<div class="g-recaptcha" data-sitekey="<%= SiteKey %>" data-size="invisible" data-callback="onRecaptchaResponse"></div>
+
+<%- include('./Layout/Scripts.ejs'); %>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+<script src="/JS/Auth.js"></script>
+</body>
+</html>

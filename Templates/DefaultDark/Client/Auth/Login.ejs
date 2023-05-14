@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        DevCow Software
+    </title>
+
+    <%- include('./Layout/Meta.ejs'); %>
+    <%- include('./Layout/Links.ejs'); %>
+</head>
+
+<body class="dark-edition">
+<div class="wrapper ">
+    <%- include('./Layout/Sidebar.ejs') %>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <%- include('./Layout/Navbar.ejs') %>
+        </nav>
+        <div class="content">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <form action="/Auth/Login" method="post">
+                                <div class="mb-md-5 mt-md-4 pb-5">
+
+                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" name="EmailAddress" id="EmailAddress"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="EmailAddress">Email</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-2">
+                                        <input type="password" name="Password" id="Password"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="Password">Password</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="captchaResponse" id="captchaResponse"
+                                               type="hidden" placeholder="captchaResponse" required/>
+                                    </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/forgot">Forgot password?</a>
+                                    </p>
+
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+                                </div>
+
+                                <div>
+                                    <p class="mb-0">Don't have an account? <a href="/register" class="text-white-50 fw-bold">Sign
+                                            Up</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-recaptcha" data-sitekey="<%= SiteKey %>" data-size="invisible"
+                 data-callback="onRecaptchaResponse"></div>
+        </div>
+        <footer class="footer">
+            <%- include('./Layout/Footer.ejs') %>
+        </footer>
+    </div>
+</div>
+<%- include('../Layout/Scripts.ejs'); %>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+<script src="/JS/Auth.js"></script>
+</body>
+
+</html>

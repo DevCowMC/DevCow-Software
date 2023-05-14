@@ -1,0 +1,14 @@
+.background-footer
+{
+    background-color: var(--dark-grey);
+}
+
+.text-Color
+{
+    color: var(--white);
+}
+hr{
+    height: 2px;
+    background-color: #FFFFFF;
+    border: none;
+}

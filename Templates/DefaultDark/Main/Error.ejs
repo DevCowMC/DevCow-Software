@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('./Layout/Meta.ejs'); %>
+    <%- include('./Layout/Links.ejs'); %>
+
+    <title>Test</title>
+</head>
+<body>
+<h1 class="text-center">An Error Has Occurred</h1>
+
+<pre><%= message %></pre>
+<pre><%= error.stack %></pre>
+
+<%- include('./Layout/Scripts.ejs'); %>
+</body>
+</html>

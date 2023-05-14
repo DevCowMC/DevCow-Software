@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+
+const app = require('../App');
+const debug = require('debug');
+const http = require('http');
+const https = require('https');
+const json = require('../Handlers/Storage/File/JSONHandler.js');
+
+
+let port = normalizePort(json.GetConfig("config.json","PORT") || '3000');
+app.set('port', port);
+
+let creds = null;
+
+if(json.GetConfig("config.json","USE_SSL") == true)
+{
+    if(json.GetConfig("config.json","SSLCERTFILE") && json.GetConfig("config.json","SSLKEYFILE") && json.GetConfig("config.json","SSLCAFILE"))
+    {
+        creds =
+            {
+                keys: fs.readFileSync(json.GetConfig("config.json","SSLKEYFILE"), "utf8"),
+                cert: fs.readFileSync(json.GetConfig("config.json","SSLCERTFILE"), "utf8"),
+                ca: fs.readFileSync(json.GetConfig("config.json","SSLCAFILE"), "utf8")
+            };
+    }
+    else if(json.GetConfig("config.json","SSLCERTFILE") && json.GetConfig("config.json","SSLKEYFILE"))
+    {
+        creds =
+            {
+                keys: fs.readFileSync(json.GetConfig("config.json","SSLKEYFILE"), "utf8"),
+                cert: fs.readFileSync(json.GetConfig("config.json","SSLCERTFILE"), "utf8")
+            };
+    }
+    else
+    {
+        console.error("SSL Certificate Error")
+    }
+}
+
+let server = null;
+
+if(creds != null)
+{
+    server = https.createServer(creds, app);
+}
+else
+{
+    server = http.createServer(app);
+}
+
+if(json.GetConfig("config.json","PROXY_ENABLED") == true)
+{
+    server.listen(port, "127.0.0.1");
+    console.log("Listening on: 127.0.0.1:" + port);
+    console.log("Started");
+}
+else if(json.GetConfig("config.json","PROXY_ENABLED") == false)
+{
+    server.listen(port);
+    console.log("Listening on: 0.0.0.0:" + port);
+    console.log("Started");
+}
+else
+{
+    console.error("Your Proxy Enabled Value Does Not Equal True Or False in the config.json file");
+}
+
+server.on('error', onError);
+server.on('listening', onListening);
+
+function normalizePort(val)
+{
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) return val;
+
+    if (port >= 0) return port;
+
+    return false;
+}
+
+function onError(error)
+{
+    if (error.syscall !== 'listen') throw error;
+
+    var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+    switch (error.code)
+    {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+function onListening()
+{
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}

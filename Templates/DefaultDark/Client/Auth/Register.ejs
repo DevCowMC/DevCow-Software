@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        DevCow Software
+    </title>
+
+    <%- include('./Layout/Meta.ejs'); %>
+    <%- include('./Layout/Links.ejs'); %>
+</head>
+
+<body class="dark-edition">
+<div class="wrapper ">
+    <% if (typeof Error == 'string' && Error) { %>
+        <div class="alert alert-danger alert-dismissible fade show ErrorAlert" role="alert">
+            <strong><%= Error %></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <%- include('./Layout/Sidebar.ejs') %>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <%- include('./Layout/Navbar.ejs') %>
+        </nav>
+        <div class="content">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <form action="/Auth/Register" method="post">
+                                <div class="mb-md-5 mt-md-4 pb-5">
+
+                                    <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                                    <p class="text-white-50 mb-5">Please enter the following information to Register To DevCow
+                                        Software</p>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="username" id="Username" name="Username"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="Username">Username</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" id="EmailAddress" name="EmailAddress"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="EmailAddress">Email</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" id="Password" name="Password"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="Password">Password</label>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-2">
+                                        <input type="password" id="ConfirmPassword" name="ConfirmPassword"
+                                               class="form-control form-control-lg"/>
+                                        <label class="form-label" for="ConfirmPassword">Confirm Password</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" name="captchaResponse" id="captchaResponse"
+                                               type="hidden" placeholder="captchaResponse" required/>
+                                    </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/forgot">Forgot password?</a>
+                                    </p>
+
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
+
+                                </div>
+
+                                <div>
+                                    <p class="mb-0">Have an Account? <a href="/login" class="text-white-50 fw-bold">Login</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-recaptcha" data-sitekey="<%= SiteKey %>" data-size="invisible"
+                 data-callback="onRecaptchaResponse"></div>
+        </div>
+        <footer class="footer">
+            <%- include('./Layout/Footer.ejs') %>
+        </footer>
+    </div>
+</div>
+
+<%- include('../Layout/Scripts.ejs'); %>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+<script src="/js/Auth.js"></script>
+</body>
+
+</html>

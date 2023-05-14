@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        DevCow Software
+    </title>
+
+    <%- include('./Layout/Meta.ejs'); %>
+    <%- include('./Layout/Links.ejs'); %>
+</head>
+
+<body class="dark-edition">
+<div class="wrapper ">
+    <%- include('./Layout/Sidebar.ejs') %>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <%- include('./Layout/Navbar.ejs') %>
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <div class="col-10 col-sm-8 col-lg-6">
+                        <img src="/images/logo/GothamMC/700.png" class="d-block mx-lg-auto img-fluid"
+                             alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 text-color">Welcome to DevCow Software Official
+                            Site</h1>
+                        <p class="lead text-color">Hello there,
+                            I am Kieran the Owner and Founder of DevCow Software within this site you can find previous
+                            work, current projects i am working and also find my other site that i had made within
+                            NodeJS. You can also see project i have been creating within UE4/5 also project made withing
+                            Java for games like minecraft and last of all things made with LUA for games to the likes of
+                            GTAV.</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <%- include('./Layout/Footer.ejs') %>
+        </footer>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+.navbar-color
+{
+    background-color: var(--dark-grey);
+}
+.logo-Text
+{
+    color: var(--white);
+    font-size: 40px;
+}
+
+.nav-link:hover
+{
+    color: var(--lime);
+}
+
+.nav-link:focus
+{
+    color: var(--lime);
+}
+
+.navbar-brand:hover
+{
+    color: var(--lime);
+}
+.navbar-brand:focus
+{
+    color: var(--lime);
+}

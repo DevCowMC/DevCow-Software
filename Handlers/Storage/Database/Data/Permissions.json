@@ -1,0 +1,18 @@
+[
+	{
+		"RoleName":"user",
+		"Permissions": [
+			"client.index.view"
+		]
+	},
+	{
+		"RoleName":"staff",
+		"Permissions": [
+			"staff.index.view"
+		]
+	},
+	{
+		"RoleName":"system",
+		"Permissions": ["*"]
+	}
+]
