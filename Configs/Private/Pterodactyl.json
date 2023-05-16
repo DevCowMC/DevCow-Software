@@ -2,5 +2,5 @@
     "BASE_URL": "https://panel.devcow-software.net/api",
     "API_KEY": "ptla_ewSmoQZs7tlzfqe1cUd7ViVoSIZ6YDvhWebfsvFKbDF",
     "CLIENT_KEY": "ptlc_tcScUb1eLlCUhYI2kI01EqmIFMTZusunW94A6DGrZip",
-    "ALLOWED_SERVERIDS": "[\"Ford\", \"BMW\", \"Fiat\"]"
+    "ALLOWED_SERVERIDS": ["0a19e4cc"]
 }

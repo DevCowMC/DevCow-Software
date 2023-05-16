@@ -26,11 +26,8 @@ let SetupAPI = (apiApp) =>
 
     apiApp.use(function(err, req, res, next)
     {
-        res.locals.message = err.message;
-        res.locals.error =  err;
-
         res.status(err.status || 500);
-        res.render('Error.ejs');
+        return res.json({Status: err.status, Message: err.message, Error: err});
     });
 }
 
