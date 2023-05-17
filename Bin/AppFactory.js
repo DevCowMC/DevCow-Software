@@ -9,6 +9,7 @@ const json = require("../Handlers/Storage/File/JSONHandler.js")
 const apiRoute = require("../Routes/API/Main.js");
 const staffRoute = require("../Routes/Staff/Main.js");
 const clientRoute = require("../Routes/Client/Main.js");
+const licenseRoute = require("../Routes/License/Main.js");
 const mainRoute = require("../Routes/Main/Main.js");
 
 
@@ -90,6 +91,36 @@ let SetupClient = (clientApp) =>
     });
 }
 
+let SetupLicense = (licenseApp) =>
+{
+    let licenseViewsArray = [templatesDir + json.GetConfig("config.json", "APP_THEME") + "/License"]
+
+    licenseApp.set('views', licenseViewsArray);
+    licenseApp.set('view engine', 'ejs');
+    licenseApp.use(logger('dev'));
+    licenseApp.use(cors());
+    licenseApp.use(express.json());
+    licenseApp.use(express.urlencoded({ extended: true }));
+    licenseApp.use(cookieParser());
+    licenseApp.use(express.static(publicDir + "License/"));
+    licenseApp.use(express.static(publicDir + "All/"));
+    licenseApp.use(licenseRoute)
+
+    licenseApp.use(function(req, res, next)
+    {
+        next(createError(404));
+    });
+
+    licenseApp.use(function(err, req, res, next)
+    {
+        res.locals.message = err.Message;
+        res.locals.error =  err;
+
+        res.status(err.status || 500);
+        res.render('Error.ejs');
+    });
+}
+
 let SetupMain = (mainApp) =>
 {
     let mainViewsArray = [templatesDir + json.GetConfig("config.json", "APP_THEME") + "/Main"]
@@ -125,5 +156,6 @@ module.exports =
         SetupMain,
         SetupAPI,
         SetupStaff,
-        SetupClient
+        SetupClient,
+        SetupLicense
     }

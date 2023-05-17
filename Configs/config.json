@@ -6,6 +6,7 @@
     "MAIN_WEBSITE_URL_PREFIX": "www",
     "STAFF_URL_PREFIX": "staff",
     "CLIENT_URL_PREFIX": "clients",
+    "LICENSE_URL_PREFIX": "licenses",
     "BASE_URL": "devcow-software.net",
     "PORT": 25569,
     "PROXY_ENABLED": false,
